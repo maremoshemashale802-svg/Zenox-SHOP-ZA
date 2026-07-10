@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ZENOX TOPUP - 30-Day Reward Store</title>
+    <style>
+        :root {
+            --bg-main: #0a0b10;
+            --bg-card: #141622;
+            --accent: #00ffcc;
+            --accent-gradient: linear-gradient(135deg, #00ffcc, #00b38f);
+            --gold: #ffcc00;
+            --gold-gradient: linear-gradient(135deg, #ffcc00, #ffaa00);
+            --text-main: #ffffff;
+            --text-muted: #8c91a5;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', system-ui, sans-serif; }
+        body { background-color: var(--bg-main); color: var(--text-main); padding: 20px 15px; display: flex; flex-direction: column; align-items: center; }
+
+        .wrapper { width: 100%; max-width: 480px; background: var(--bg-card); border-radius: 24px; padding: 25px; box-shadow: 0 15px 35px rgba(0,0,0,0.6); border: 1px solid #1f2336; }
+        
+        .header { text-align: center; margin-bottom: 20px; background: #1b1e2e; padding: 15px; border-radius: 16px; border: 1px solid #282d46; }
+        .logo { font-size: 26px; font-weight: 900; color: var(--accent); letter-spacing: 1.5px; margin-bottom: 4px; }
+        .sublogo { font-size: 11px; color: var(--text-muted); text-transform: uppercase; font-weight: bold; }
+
+        /* 30-Day Progress Dashboard Dashboard */
+        .streak-container { background: linear-gradient(145deg, #1d2136, #151829); border: 1px dashed var(--gold); border-radius: 16px; padding: 20px; margin-bottom: 20px; text-align: center; position: relative; }
+        .streak-title { font-size: 13px; font-weight: 800; color: var(--gold); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 8px; }
+        .streak-counter { font-size: 32px; font-weight: 900; color: #fff; margin-bottom: 12px; }
+        
+        /* Progress Bar elements */
+        .progress-track { background: #0a0b10; width: 100%; height: 12px; border-radius: 10px; margin-bottom: 15px; overflow: hidden; border: 1px solid #22263d; }
+        .progress-bar { background: var(--gold-gradient); width: 0%; height: 100%; transition: width 0.4s ease; }
+        
+        .streak-btn { width: 100%; padding: 12px; background: var(--gold-gradient); border: none; color: #000; font-weight: 800; border-radius: 10px; cursor: pointer; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; }
+        .streak-btn:disabled { background: #22263a; color: #575c75; cursor: not-allowed; }
+
+        /* Input Controls */
+        .step-box { background: #191c2b; border: 1px solid #252a41; padding: 15px; border-radius: 14px; margin-bottom: 20px; }
+        .step-title { font-size: 12px; font-weight: 800; color: var(--accent); text-transform: uppercase; margin-bottom: 12px; letter-spacing: 0.5px; }
+        
+        input, select { width: 100%; padding: 14px; background-color: var(--bg-main); border: 1px solid #2d334d; color: var(--text-main); border-radius: 10px; font-size: 15px; font-weight: bold; }
+        input:focus, select:focus { border-color: var(--accent); outline: none; }
+
+        /* Store Catalog Display Grid */
+        .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
+        .product-card { background: #1c1f33; border-radius: 16px; padding: 20px 12px; text-align: center; border: 1px solid #282e4a; cursor: pointer; position: relative; transition: all 0.2s; }
+        .product-card.selected { border-color: var(--accent); background: #1f273d; }
+        
+        .img-slot { font-size: 36px; margin-bottom: 8px; display: block; }
+        .item-title { font-size: 14px; font-weight: 700; margin-bottom: 4px; display: block; }
+        
+        /* Dynamic price layout styling blocks */
+        .price-container { display: flex; flex-direction: column; align-items: center; gap: 2px; }
+        .old-price { font-size: 11px; text-decoration: line-through; color: #ff5555; display: none; font-weight: bold; }
+        .item-price { font-size: 15px; color: var(--gold); font-weight: 800; }
+        
+        .badge-50 { position: absolute; top: -10px; left: 50%; transform: translateX(-50%); background: #ff3333; color: #fff; font-size: 9px; font-weight: 900; padding: 3px 10px; border-radius: 10px; text-transform: uppercase; display: none; box-shadow: 0 4px 10px rgba(255,51,51,0.3); }
+
+        .submit-btn { width: 100%; padding: 16px; background: var(--accent-gradient); border: none; color: #000000; font-weight: 800; border-radius: 12px; cursor: pointer; font-size: 15px; text-transform: uppercase; margin-top: 5px; }
+
+        .safety-footer { background: rgba(0, 255, 204, 0.04); border: 1px dashed var(--accent); border-radius: 12px; padding: 12px; font-size: 11px; color: #a3e6d8; line-height: 1.4; text-align: center; margin-top: 20px; }
+    </style>
+</head>
+<body>
+
+    <div class="wrapper">
+        <div class="header">
+            <div class="logo">ZENOX STREAKS</div>
+            <div class="sublogo">🇿🇦 Check-In Challenge Portal</div>
+        </div>
+
+        <!-- Progress Tracking Dashboard Component -->
+        <div class="streak-container">
+            <div class="streak-title">🎁 30-Day 50% Off Reward Progress</div>
+            <div class="streak-counter"><span id="days_count">0</span> / 30 Days</div>
+            <div class="progress-track">
+                <div class="progress-bar" id="bar_fill"></div>
+            </div>
+            <button class="streak-btn" id="claim_day_btn" onclick="triggerCheckIn()">Log Today's Attendance</button>
+        </div>
+
+        <div class="step-box">
+            <div class="step-title">🆔 Step 1: Game Profile Identification</div>
+            <input type="text" id="player_uid" placeholder="Enter Free Fire Player UID" maxlength="12">
+        </div>
+
+        <div class="step-box">
+            <div class="step-title">📡 Step 2: Choose Mobile Carrier</div>
+            <select id="carrier_network">
+                <option value="Vodacom">Vodacom Airtime</option>
+                <option value="MTN">MTN Airtime</option>
+                <option value="Telkom">Telkom Airtime</option>
+            </select>
+        </div>
+
+        <div class="step-box">
+            <div class="step-title">💎 Step 3: Catalog List</div>
+            <div class="grid">
+                <!-- Product Card 1 -->
+                <div class="product-card" id="card_pack1" onclick="selectPackage(this, '50 Diamonds', 20)">
+                    <span class="badge-50">50% Locked In</span>
+                    <span class="img-slot">✨</span>
+                    <span class="item-title">50 Diamonds</span>
+                    <div class="price-container">
+                        <span class="old-price" id="old_p1">R 20.00</span>
+                        <span class="item-price" id="p1">R 20.00</span>
+                    </div>
+                </div>
+                <!-- Product Card 2 -->
+                <div class="product-card" id="card_pack2" onclick="selectPackage(this, '100 Diamonds', 40)">
+                    <span class="badge-50">50% Locked In</span>
+                    <span class="img-slot">💎</span>
+                    <span class="item-title">100 Diamonds</span>
+                    <div class="price-container">
+                        <span class="old-price" id="old_p2">R 40.00</span>
+                        <span class="item-price" id="p2">R 40.00</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <button class="submit-btn" onclick="checkoutOrder()">Confirm & Pay via Airtime</button>
+
+        <div class="safety-footer">
+            🛡️ <strong>Verified Safety Infrastructure:</strong> Earn tokens naturally via site activities. Official UID endpoint transfer protocols completely eliminate account ban vulnerabilities.
+        </div>
+    </div>
+
+    <script>
+        // Set configuration metrics variables
+        let selectedProduct = null;
+        let baseCost = 0;
+        let streakActiveDays = 0;
+        let pointsSystemDiscountReached = false;
+
+        // Local browser storage initialization configurations routines
+        window.onload = function() {
+            if (localStorage.getItem('zenox_streak_count')) {
+                streakActiveDays = parseInt(localStorage.getItem('zenox_streak_count'));
+            }
+            updateStreakUI();
+        };
+
+        function triggerCheckIn() {
+            // Basic checking safety control verification to track past date values
+            let todayTimestampString = new Date().toDateString();
+            let lastRecordedCheckIn = localStorage.getItem('zenox_last_checkin_date');
+
+            if (lastRecordedCheckIn === todayTimestampString) {
+                alert("⏳ Attendance logged! Come back tomorrow to advance your progress window.");
+                return;
+            }
+
+            streakActiveDays += 1;
+            
+            // Safety cap configuration to ceiling values parameters
+            if(streakActiveDays > 30) streakActiveDays = 30;
+
+            localStorage.setItem('zenox_streak_count', streakActiveDays);
+            localStorage.setItem('zenox_last_checkin_date', todayTimestampString);
+            
+            updateStreakUI();
+            alert(`🎉 Success! Day ${streakActiveDays} attendance noted. Keep it up!`);
+        }
+
+        function updateStreakUI() {
+            document.getElementById('days_count').textContent = streakActiveDays;
+            
+            // Adjust loading bar animation state
+            let fillPercentage = (streakActiveDays / 30) * 100;
+            document.getElementById('bar_fill').style.width = fillPercentage + "%";
+
+            // If challenge constraints target achieved, swap active prices metrics
+            if (streakActiveDays >= 30) {
+                pointsSystemDiscountReached = true;
+                applyDiscountModifications();
+            }
+        }
+
