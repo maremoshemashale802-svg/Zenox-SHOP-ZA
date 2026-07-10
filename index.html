@@ -3,263 +3,199 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Game Shop Template</title>
+    <title>EvoRewards - Game Items & Diamonds</title>
     <style>
-        :root {
-            --bg-color: #0f172a;
-            --card-bg: #1e293b;
-            --accent-color: #f59e0b;
-            --text-color: #f8fafc;
-            --text-muted: #94a3b8;
-        }
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', sans-serif; }
+        body { background-color: #0b0c10; color: #fff; padding: 15px; display: flex; flex-direction: column; align-items: center; }
+        
+        /* App Header */
+        .app-container { width: 100%; max-width: 420px; background: #1f2833; border-radius: 20px; padding: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.7); }
+        .header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 25px; }
+        .logo { font-size: 24px; font-weight: 900; color: #66fcf1; }
+        .wallet { background: #0b0c10; padding: 8px 15px; border-radius: 30px; font-weight: bold; border: 1px solid #45f3ff; color: #45f3ff; font-size: 14px; }
 
-        body {
-            margin: 0;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: var(--bg-color);
-            color: var(--text-color);
-        }
+        /* Section Title */
+        h3 { font-size: 16px; text-transform: uppercase; color: #c5a059; margin-bottom: 15px; letter-spacing: 1px; }
 
-        header {
-            background-color: #020617;
-            padding: 20px;
-            text-align: center;
-            border-bottom: 3px solid var(--accent-color);
-        }
+        /* Grid Items */
+        .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-bottom: 25px; }
+        .shop-card { background: #0b0c10; border-radius: 12px; padding: 15px; text-align: center; border: 1px solid #2f3e46; transition: 0.3s; position: relative; overflow: hidden; }
+        .shop-card:hover { border-color: #66fcf1; transform: translateY(-3px); }
+        
+        .item-tag { position: absolute; top: 0; left: 0; background: #ff3333; color: #fff; font-size: 9px; font-weight: bold; padding: 3px 8px; border-bottom-right-radius: 8px; text-transform: uppercase; }
+        .item-img { font-size: 40px; margin: 10px 0; display: block; }
+        .item-name { font-size: 14px; font-weight: bold; margin-bottom: 5px; display: block; }
+        .item-cost { font-size: 12px; color: #66fcf1; font-weight: bold; display: block; margin-bottom: 12px; }
+        
+        .claim-btn { width: 100%; padding: 8px; background: linear-gradient(90deg, #45f3ff, #1f2833); border: none; color: #000; font-weight: bold; border-radius: 6px; cursor: pointer; font-size: 12px; text-transform: uppercase; }
 
-        h1 {
-            margin: 0;
-            color: var(--accent-color);
-        }
-
-        .promo-banner {
-            background: linear-gradient(90deg, #b91c1c, #f59e0b);
-            color: white;
-            text-align: center;
-            padding: 10px;
-            font-weight: bold;
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 20px auto;
-            padding: 0 20px;
-        }
-
-        .tabs {
-            display: flex;
-            justify-content: center;
-            gap: 10px;
-            margin-bottom: 30px;
-        }
-
-        .tab-btn {
-            background-color: var(--card-bg);
-            color: white;
-            border: 2px solid transparent;
-            padding: 12px 24px;
-            cursor: pointer;
-            font-weight: bold;
-            border-radius: 8px;
-            transition: all 0.3s ease;
-        }
-
-        .tab-btn.active, .tab-btn:hover {
-            border-color: var(--accent-color);
-            background-color: #2d3748;
-        }
-
-        .grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 20px;
-        }
-
-        .card {
-            background-color: var(--card-bg);
-            border-radius: 12px;
-            padding: 20px;
-            text-align: center;
-            border: 1px solid #334155;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-        }
-
-        .card h3 {
-            margin-top: 0;
-        }
-
-        .price {
-            font-size: 1.5rem;
-            color: var(--accent-color);
-            font-weight: bold;
-            margin: 15px 0;
-        }
-
-        .desc {
-            color: var(--text-muted);
-            font-size: 0.9rem;
-            margin-bottom: 20px;
-        }
-
-        .buy-btn {
-            background-color: var(--accent-color);
-            color: #000;
-            border: none;
-            padding: 10px 20px;
-            font-weight: bold;
-            border-radius: 6px;
-            cursor: pointer;
-            width: 100%;
-            transition: background 0.2s;
-        }
-
-        .buy-btn:hover {
-            background-color: #d97706;
-        }
-
-        /* Order Summary / Demo Input Modal Area */
-        .demo-panel {
-            background-color: var(--card-bg);
-            border: 2px solid var(--accent-color);
-            border-radius: 12px;
-            padding: 20px;
-            margin-top: 40px;
-        }
-
-        .form-group {
-            margin-bottom: 15px;
-        }
-
-        .form-group label {
-            display: block;
-            margin-bottom: 5px;
-            color: var(--text-muted);
-        }
-
-        .form-group input, .form-group select {
-            width: 100%;
-            padding: 10px;
-            border-radius: 6px;
-            border: 1px solid #475569;
-            background-color: #0f172a;
-            color: white;
-            box-sizing: border-box;
-        }
+        /* Notice Box */
+        .legal-notice { background: rgba(255, 51, 51, 0.1); border: 1px solid #ff3333; border-radius: 8px; padding: 12px; font-size: 11px; color: #ffaaaa; line-height: 1.4; text-align: center; }
     </style>
 </head>
 <body>
 
-    <div class="promo-banner">
-        🔥 Special Welcome Promo: 30% Off Applied Automatically for 30 Days!
-    </div>
-
-    <header>
-        <h1>STORE FRONT TEMPLATE</h1>
-        <p>Frontend Demonstration Interface</p>
-    </header>
-
-    <div class="container">
-        <!-- Navigation Categories -->
-        <div class="tabs">
-            <button class="tab-btn active">Top Ups</button>
-            <button class="tab-btn">Memberships</button>
-            <button class="tab-btn">Items & Cosmetics</button>
+    <div class="app-container">
+        <!-- Top Navigation -->
+        <div class="header">
+            <div class="logo">EvoRewards 🔥</div>
+            <div class="wallet">🪙 <span id="coins">2,500</span> Coins</div>
         </div>
 
-        <!-- Catalog Display -->
-        <h2>Available Packages</h2>
+        <!-- Diamonds Section -->
+        <h3>Diamond Packages</h3>
         <div class="grid">
-            <!-- Package 1 -->
-            <div class="card">
-                <div>
-                    <h3>100 Premium Currencies</h3>
-                    <p class="desc">Standard instant credit bundle</p>
-                </div>
-                <div>
-                    <div class="price">R 10.00</div>
-                    <button class="buy-btn" onclick="selectPackage('100 Currencies', 10)">Select Package</button>
-                </div>
+            <div class="shop-card">
+                <span class="item-img">💎</span>
+                <span class="item-name">100 Diamonds</span>
+                <span class="item-cost">🪙 1,000 Coins</span>
+                <button class="claim-btn" onclick="redeemItem('100 Diamonds', 1000)">Redeem</button>
             </div>
-
-            <!-- Package 2 -->
-            <div class="card">
-                <div>
-                    <h3>350 Premium Currencies</h3>
-                    <p class="desc">Medium value instant credit bundle</p>
-                </div>
-                <div>
-                    <div class="price">R 30.00</div>
-                    <button class="buy-btn" onclick="selectPackage('350 Currencies', 30)">Select Package</button>
-                </div>
-            </div>
-
-            <!-- Package 3 -->
-            <div class="card">
-                <div>
-                    <h3>Weekly Access Pass</h3>
-                    <p class="desc">40 instant + 12 daily claims over 7 days</p>
-                </div>
-                <div>
-                    <div class="price">R 17.00</div>
-                    <button class="buy-btn" onclick="selectPackage('Weekly Access Pass', 17)">Select Package</button>
-                </div>
-            </div>
-
-            <!-- Package 4 -->
-            <div class="card">
-                <div>
-                    <h3>Cosmetic Variant Pack</h3>
-                    <p class="desc">Special visual customization bundle</p>
-                </div>
-                <div>
-                    <div class="price">R 170.00</div>
-                    <button class="buy-btn" onclick="selectPackage('Cosmetic Pack', 170)">Select Package</button>
-                </div>
+            <div class="shop-card">
+                <span class="item-img">💎💎</span>
+                <span class="item-name">310 Diamonds</span>
+                <span class="item-cost">🪙 2,800 Coins</span>
+                <button class="claim-btn" onclick="redeemItem('310 Diamonds', 2800)">Redeem</button>
             </div>
         </div>
 
-        <!-- Mock Configuration Form -->
-        <div class="demo-panel">
-            <h2>Checkout Configuration (Demo)</h2>
-            <div class="form-group">
-                <label for="selected-item">Selected Item:</label>
-                <input type="text" id="selected-item" readonly value="None">
+        <!-- Evo Gun Safe Vouchers Section -->
+        <h3>Evo Gun Rewards</h3>
+        <div class="grid">
+            <div class="shop-card">
+                <span class="item-tag">M1014</span>
+                <span class="item-img">🐉</span>
+                <span class="item-name">Green Flame Token</span>
+                <span class="item-cost">🪙 1,500 Coins</span>
+                <button class="claim-btn" onclick="redeemItem('Green Flame Token Pack', 1500)">Redeem</button>
             </div>
-            
-            <div class="form-group">
-                <label for="uid">Account ID (UID):</label>
-                <input type="text" id="uid" placeholder="Example: 123456789">
+            <div class="shop-card">
+                <span class="item-tag">MP40</span>
+                <span class="item-img">🐍</span>
+                <span class="item-name">Predator Cobra Pack</span>
+                <span class="item-cost">🪙 2,000 Coins</span>
+                <button class="claim-btn" onclick="redeemItem('Predator Cobra Pack', 2000)">Redeem</button>
             </div>
+        </div>
 
-            <div class="form-group">
-                <label for="network">Preferred Network Provider:</label>
-                <select id="network">
-                    <option value="mtn">Provider A</option>
-                    <option value="vodacom">Provider B</option>
-                    <option value="telkom">Provider C</option>
-                </select>
-            </div>
-
-            <button class="buy-btn" style="margin-top: 15px;" onclick="processDemo()">Simulate Order Creation</button>
+        <!-- Safe Legal Notice -->
+        <div class="legal-notice">
+            ⚠️ <strong>Anti-Ban Guarantee:</strong> All rewards are delivered safely as official digital gift cards or via authorized partners. We never ask for your game password.
         </div>
     </div>
 
     <script>
-        function selectPackage(name, price) {
-            document.getElementById('selected-item').value = name + " - R" + price.toFixed(2);
-            alert("Selected: " + name);
-        }
+        let userCoins = 2500;
 
-        function processDemo() {
-            const uid = document.getElementById('uid').value;
-            const item = document.getElementById('selected-item').value;
-            if(!uid || item === "None") {
-                alert("Please select a package and fill in the required account ID.");
-                return;
+        function redeemItem(itemName, cost) {
+            if (userCoins >= cost) {
+                userCoins -= cost;
+                document.getElementById('coins').textContent = userCoins.toLocaleString();
+                alert(`🎉 Order Placed! Your request for "${itemName}" has been received. Processing via official channels can take up to 24 hours.`);
+            } else {
+                alert("❌ Insufficient Coins! Participate in more app tournaments or watch ads to earn more coins.");
             }
-            alert("Demo workflow completed. In a live application, this information would pass safely to a certified transaction processing gateway.");
+        }
+    </script>
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EvoRewards - Game Items & Diamonds</title>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', sans-serif; }
+        body { background-color: #0b0c10; color: #fff; padding: 15px; display: flex; flex-direction: column; align-items: center; }
+        
+        /* App Header */
+        .app-container { width: 100%; max-width: 420px; background: #1f2833; border-radius: 20px; padding: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.7); }
+        .header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 25px; }
+        .logo { font-size: 24px; font-weight: 900; color: #66fcf1; }
+        .wallet { background: #0b0c10; padding: 8px 15px; border-radius: 30px; font-weight: bold; border: 1px solid #45f3ff; color: #45f3ff; font-size: 14px; }
+
+        /* Section Title */
+        h3 { font-size: 16px; text-transform: uppercase; color: #c5a059; margin-bottom: 15px; letter-spacing: 1px; }
+
+        /* Grid Items */
+        .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-bottom: 25px; }
+        .shop-card { background: #0b0c10; border-radius: 12px; padding: 15px; text-align: center; border: 1px solid #2f3e46; transition: 0.3s; position: relative; overflow: hidden; }
+        .shop-card:hover { border-color: #66fcf1; transform: translateY(-3px); }
+        
+        .item-tag { position: absolute; top: 0; left: 0; background: #ff3333; color: #fff; font-size: 9px; font-weight: bold; padding: 3px 8px; border-bottom-right-radius: 8px; text-transform: uppercase; }
+        .item-img { font-size: 40px; margin: 10px 0; display: block; }
+        .item-name { font-size: 14px; font-weight: bold; margin-bottom: 5px; display: block; }
+        .item-cost { font-size: 12px; color: #66fcf1; font-weight: bold; display: block; margin-bottom: 12px; }
+        
+        .claim-btn { width: 100%; padding: 8px; background: linear-gradient(90deg, #45f3ff, #1f2833); border: none; color: #000; font-weight: bold; border-radius: 6px; cursor: pointer; font-size: 12px; text-transform: uppercase; }
+
+        /* Notice Box */
+        .legal-notice { background: rgba(255, 51, 51, 0.1); border: 1px solid #ff3333; border-radius: 8px; padding: 12px; font-size: 11px; color: #ffaaaa; line-height: 1.4; text-align: center; }
+    </style>
+</head>
+<body>
+
+    <div class="app-container">
+        <!-- Top Navigation -->
+        <div class="header">
+            <div class="logo">EvoRewards 🔥</div>
+            <div class="wallet">🪙 <span id="coins">2,500</span> Coins</div>
+        </div>
+
+        <!-- Diamonds Section -->
+        <h3>Diamond Packages</h3>
+        <div class="grid">
+            <div class="shop-card">
+                <span class="item-img">💎</span>
+                <span class="item-name">100 Diamonds</span>
+                <span class="item-cost">🪙 1,000 Coins</span>
+                <button class="claim-btn" onclick="redeemItem('100 Diamonds', 1000)">Redeem</button>
+            </div>
+            <div class="shop-card">
+                <span class="item-img">💎💎</span>
+                <span class="item-name">310 Diamonds</span>
+                <span class="item-cost">🪙 2,800 Coins</span>
+                <button class="claim-btn" onclick="redeemItem('310 Diamonds', 2800)">Redeem</button>
+            </div>
+        </div>
+
+        <!-- Evo Gun Safe Vouchers Section -->
+        <h3>Evo Gun Rewards</h3>
+        <div class="grid">
+            <div class="shop-card">
+                <span class="item-tag">M1014</span>
+                <span class="item-img">🐉</span>
+                <span class="item-name">Green Flame Token</span>
+                <span class="item-cost">🪙 1,500 Coins</span>
+                <button class="claim-btn" onclick="redeemItem('Green Flame Token Pack', 1500)">Redeem</button>
+            </div>
+            <div class="shop-card">
+                <span class="item-tag">MP40</span>
+                <span class="item-img">🐍</span>
+                <span class="item-name">Predator Cobra Pack</span>
+                <span class="item-cost">🪙 2,000 Coins</span>
+                <button class="claim-btn" onclick="redeemItem('Predator Cobra Pack', 2000)">Redeem</button>
+            </div>
+        </div>
+
+        <!-- Safe Legal Notice -->
+        <div class="legal-notice">
+            ⚠️ <strong>Anti-Ban Guarantee:</strong> All rewards are delivered safely as official digital gift cards or via authorized partners. We never ask for your game password.
+        </div>
+    </div>
+
+    <script>
+        let userCoins = 2500;
+
+        function redeemItem(itemName, cost) {
+            if (userCoins >= cost) {
+                userCoins -= cost;
+                document.getElementById('coins').textContent = userCoins.toLocaleString();
+                alert(`🎉 Order Placed! Your request for "${itemName}" has been received. Processing via official channels can take up to 24 hours.`);
+            } else {
+                alert("❌ Insufficient Coins! Participate in more app tournaments or watch ads to earn more coins.");
+            }
         }
     </script>
 </body>
