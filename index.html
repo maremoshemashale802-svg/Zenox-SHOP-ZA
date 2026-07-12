@@ -3,200 +3,69 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>EvoRewards - Game Items & Diamonds</title>
-    <style>
-        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', sans-serif; }
-        body { background-color: #0b0c10; color: #fff; padding: 15px; display: flex; flex-direction: column; align-items: center; }
-        
-        /* App Header */
-        .app-container { width: 100%; max-width: 420px; background: #1f2833; border-radius: 20px; padding: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.7); }
-        .header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 25px; }
-        .logo { font-size: 24px; font-weight: 900; color: #66fcf1; }
-        .wallet { background: #0b0c10; padding: 8px 15px; border-radius: 30px; font-weight: bold; border: 1px solid #45f3ff; color: #45f3ff; font-size: 14px; }
-
-        /* Section Title */
-        h3 { font-size: 16px; text-transform: uppercase; color: #c5a059; margin-bottom: 15px; letter-spacing: 1px; }
-
-        /* Grid Items */
-        .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-bottom: 25px; }
-        .shop-card { background: #0b0c10; border-radius: 12px; padding: 15px; text-align: center; border: 1px solid #2f3e46; transition: 0.3s; position: relative; overflow: hidden; }
-        .shop-card:hover { border-color: #66fcf1; transform: translateY(-3px); }
-        
-        .item-tag { position: absolute; top: 0; left: 0; background: #ff3333; color: #fff; font-size: 9px; font-weight: bold; padding: 3px 8px; border-bottom-right-radius: 8px; text-transform: uppercase; }
-        .item-img { font-size: 40px; margin: 10px 0; display: block; }
-        .item-name { font-size: 14px; font-weight: bold; margin-bottom: 5px; display: block; }
-        .item-cost { font-size: 12px; color: #66fcf1; font-weight: bold; display: block; margin-bottom: 12px; }
-        
-        .claim-btn { width: 100%; padding: 8px; background: linear-gradient(90deg, #45f3ff, #1f2833); border: none; color: #000; font-weight: bold; border-radius: 6px; cursor: pointer; font-size: 12px; text-transform: uppercase; }
-
-        /* Notice Box */
-        .legal-notice { background: rgba(255, 51, 51, 0.1); border: 1px solid #ff3333; border-radius: 8px; padding: 12px; font-size: 11px; color: #ffaaaa; line-height: 1.4; text-align: center; }
-    </style>
+    <title>Social Boost Optimizer</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- FontAwesome for Media Logos -->
+    <link rel="stylesheet" href="https://cloudflare.com">
 </head>
 <body>
 
-    <div class="app-container">
-        <!-- Top Navigation -->
-        <div class="header">
-            <div class="logo">EvoRewards 🔥</div>
-            <div class="wallet">🪙 <span id="coins">2,500</span> Coins</div>
-        </div>
+    <div class="container">
+        <h1><i class="fa-solid fa-rocket"></i> Content Booster Simulator</h1>
+        <p class="subtitle">Legal & Safe Audience Growth Optimizer</p>
 
-        <!-- Diamonds Section -->
-        <h3>Diamond Packages</h3>
-        <div class="grid">
-            <div class="shop-card">
-                <span class="item-img">💎</span>
-                <span class="item-name">100 Diamonds</span>
-                <span class="item-cost">🪙 1,000 Coins</span>
-                <button class="claim-btn" onclick="redeemItem('100 Diamonds', 1000)">Redeem</button>
-            </div>
-            <div class="shop-card">
-                <span class="item-img">💎💎</span>
-                <span class="item-name">310 Diamonds</span>
-                <span class="item-cost">🪙 2,800 Coins</span>
-                <button class="claim-btn" onclick="redeemItem('310 Diamonds', 2800)">Redeem</button>
-            </div>
-        </div>
-
-        <!-- Evo Gun Safe Vouchers Section -->
-        <h3>Evo Gun Rewards</h3>
-        <div class="grid">
-            <div class="shop-card">
-                <span class="item-tag">M1014</span>
-                <span class="item-img">🐉</span>
-                <span class="item-name">Green Flame Token</span>
-                <span class="item-cost">🪙 1,500 Coins</span>
-                <button class="claim-btn" onclick="redeemItem('Green Flame Token Pack', 1500)">Redeem</button>
-            </div>
-            <div class="shop-card">
-                <span class="item-tag">MP40</span>
-                <span class="item-img">🐍</span>
-                <span class="item-name">Predator Cobra Pack</span>
-                <span class="item-cost">🪙 2,000 Coins</span>
-                <button class="claim-btn" onclick="redeemItem('Predator Cobra Pack', 2000)">Redeem</button>
+        <!-- Step 1: Select Platform -->
+        <div class="section">
+            <h3>1. Choose Your Platform</h3>
+            <div class="platform-grid">
+                <button class="platform-btn tiktok" onclick="selectPlatform('TikTok', '#EE1D52')">
+                    <i class="fa-brands fa-tiktok"></i> TikTok
+                </button>
+                <button class="platform-btn facebook" onclick="selectPlatform('Facebook', '#1877F2')">
+                    <i class="fa-brands fa-facebook"></i> Facebook
+                </button>
+                <button class="platform-btn youtube" onclick="selectPlatform('YouTube', '#FF0000')">
+                    <i class="fa-brands fa-youtube"></i> YouTube
+                </button>
+                <button class="platform-btn instagram" onclick="selectPlatform('Instagram', '#E1306C')">
+                    <i class="fa-brands fa-instagram"></i> Instagram
+                </button>
             </div>
         </div>
 
-        <!-- Safe Legal Notice -->
-        <div class="legal-notice">
-            ⚠️ <strong>Anti-Ban Guarantee:</strong> All rewards are delivered safely as official digital gift cards or via authorized partners. We never ask for your game password.
+        <!-- Step 2: Input Link -->
+        <div class="section">
+            <h3>2. Enter Target Link</h3>
+            <input type="url" id="profileLink" placeholder="https://platform.com" required>
+        </div>
+
+        <!-- Step 3: Select Target -->
+        <div class="section">
+            <h3>3. Choose Target Milestone</h3>
+            <select id="viewTarget">
+                <option value="10k">10,000 Safe Dynamic Views</option>
+                <option value="50k">50,000 Optimized Growth Views</option>
+                <option value="100k">100,000+ Viral Target Milestone</option>
+            </select>
+        </div>
+
+        <button class="main-boost-btn" onclick="startOptimization()">Initialize Safe Boost</button>
+
+        <!-- Status & Console Output -->
+        <div id="statusBox" class="status-box" style="display: none;">
+            <div class="loader"></div>
+            <p id="statusText">Connecting safely to algorithm...</p>
+        </div>
+
+        <div id="resultBox" class="result-box" style="display: none;">
+            <h3><i class="fa-solid fa-circle-check"></i> Strategy Plan Generated Successfully!</h3>
+            <p id="resultMessage"></p>
+            <div class="legal-notice">
+                <strong>Legal Protection Rule:</strong> To completely avoid bans, this simulator provides optimized tags, timing layouts, and engagement strategies directly mapped to your target profile.
+            </div>
         </div>
     </div>
 
-    <script>
-        let userCoins = 2500;
-
-        function redeemItem(itemName, cost) {
-            if (userCoins >= cost) {
-                userCoins -= cost;
-                document.getElementById('coins').textContent = userCoins.toLocaleString();
-                alert(`🎉 Order Placed! Your request for "${itemName}" has been received. Processing via official channels can take up to 24 hours.`);
-            } else {
-                alert("❌ Insufficient Coins! Participate in more app tournaments or watch ads to earn more coins.");
-            }
-        }
-    </script>
-</body>
-</html>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>EvoRewards - Game Items & Diamonds</title>
-    <style>
-        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', sans-serif; }
-        body { background-color: #0b0c10; color: #fff; padding: 15px; display: flex; flex-direction: column; align-items: center; }
-        
-        /* App Header */
-        .app-container { width: 100%; max-width: 420px; background: #1f2833; border-radius: 20px; padding: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.7); }
-        .header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 25px; }
-        .logo { font-size: 24px; font-weight: 900; color: #66fcf1; }
-        .wallet { background: #0b0c10; padding: 8px 15px; border-radius: 30px; font-weight: bold; border: 1px solid #45f3ff; color: #45f3ff; font-size: 14px; }
-
-        /* Section Title */
-        h3 { font-size: 16px; text-transform: uppercase; color: #c5a059; margin-bottom: 15px; letter-spacing: 1px; }
-
-        /* Grid Items */
-        .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-bottom: 25px; }
-        .shop-card { background: #0b0c10; border-radius: 12px; padding: 15px; text-align: center; border: 1px solid #2f3e46; transition: 0.3s; position: relative; overflow: hidden; }
-        .shop-card:hover { border-color: #66fcf1; transform: translateY(-3px); }
-        
-        .item-tag { position: absolute; top: 0; left: 0; background: #ff3333; color: #fff; font-size: 9px; font-weight: bold; padding: 3px 8px; border-bottom-right-radius: 8px; text-transform: uppercase; }
-        .item-img { font-size: 40px; margin: 10px 0; display: block; }
-        .item-name { font-size: 14px; font-weight: bold; margin-bottom: 5px; display: block; }
-        .item-cost { font-size: 12px; color: #66fcf1; font-weight: bold; display: block; margin-bottom: 12px; }
-        
-        .claim-btn { width: 100%; padding: 8px; background: linear-gradient(90deg, #45f3ff, #1f2833); border: none; color: #000; font-weight: bold; border-radius: 6px; cursor: pointer; font-size: 12px; text-transform: uppercase; }
-
-        /* Notice Box */
-        .legal-notice { background: rgba(255, 51, 51, 0.1); border: 1px solid #ff3333; border-radius: 8px; padding: 12px; font-size: 11px; color: #ffaaaa; line-height: 1.4; text-align: center; }
-    </style>
-</head>
-<body>
-
-    <div class="app-container">
-        <!-- Top Navigation -->
-        <div class="header">
-            <div class="logo">EvoRewards 🔥</div>
-            <div class="wallet">🪙 <span id="coins">2,500</span> Coins</div>
-        </div>
-
-        <!-- Diamonds Section -->
-        <h3>Diamond Packages</h3>
-        <div class="grid">
-            <div class="shop-card">
-                <span class="item-img">💎</span>
-                <span class="item-name">100 Diamonds</span>
-                <span class="item-cost">🪙 1,000 Coins</span>
-                <button class="claim-btn" onclick="redeemItem('100 Diamonds', 1000)">Redeem</button>
-            </div>
-            <div class="shop-card">
-                <span class="item-img">💎💎</span>
-                <span class="item-name">310 Diamonds</span>
-                <span class="item-cost">🪙 2,800 Coins</span>
-                <button class="claim-btn" onclick="redeemItem('310 Diamonds', 2800)">Redeem</button>
-            </div>
-        </div>
-
-        <!-- Evo Gun Safe Vouchers Section -->
-        <h3>Evo Gun Rewards</h3>
-        <div class="grid">
-            <div class="shop-card">
-                <span class="item-tag">M1014</span>
-                <span class="item-img">🐉</span>
-                <span class="item-name">Green Flame Token</span>
-                <span class="item-cost">🪙 1,500 Coins</span>
-                <button class="claim-btn" onclick="redeemItem('Green Flame Token Pack', 1500)">Redeem</button>
-            </div>
-            <div class="shop-card">
-                <span class="item-tag">MP40</span>
-                <span class="item-img">🐍</span>
-                <span class="item-name">Predator Cobra Pack</span>
-                <span class="item-cost">🪙 2,000 Coins</span>
-                <button class="claim-btn" onclick="redeemItem('Predator Cobra Pack', 2000)">Redeem</button>
-            </div>
-        </div>
-
-        <!-- Safe Legal Notice -->
-        <div class="legal-notice">
-            ⚠️ <strong>Anti-Ban Guarantee:</strong> All rewards are delivered safely as official digital gift cards or via authorized partners. We never ask for your game password.
-        </div>
-    </div>
-
-    <script>
-        let userCoins = 2500;
-
-        function redeemItem(itemName, cost) {
-            if (userCoins >= cost) {
-                userCoins -= cost;
-                document.getElementById('coins').textContent = userCoins.toLocaleString();
-                alert(`🎉 Order Placed! Your request for "${itemName}" has been received. Processing via official channels can take up to 24 hours.`);
-            } else {
-                alert("❌ Insufficient Coins! Participate in more app tournaments or watch ads to earn more coins.");
-            }
-        }
-    </script>
+    <script src="script.js"></script>
 </body>
 </html>
