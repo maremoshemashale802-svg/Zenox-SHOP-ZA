@@ -8,8 +8,11 @@ function selectBundle(name, rarity, description) {
     itemRarity.textContent = rarity;
     desc.textContent = description;
 
-    // Show panel
+    // Show the information panel
     panel.classList.remove('hidden');
+    
+    // Smooth scroll down to preview on mobile devices
+    panel.scrollIntoView({ behavior: 'smooth' });
 }
 
 function closePreview() {
