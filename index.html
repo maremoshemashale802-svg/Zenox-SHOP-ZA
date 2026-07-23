@@ -3,46 +3,97 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cosmetic Item Showcase</title>
+    <title>FF Zero Recoil Ultra Sensitivity Gen</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="showcase-container">
+
+    <div class="bg-glows">
+        <div class="glow-orb orb-1"></div>
+        <div class="glow-orb orb-2"></div>
+        <div class="glow-orb orb-3"></div>
+    </div>
+
+    <div class="container">
         <header>
-            <h1>Bundle & Skin Vault</h1>
-            <p>Select a cosmetic bundle to preview details</p>
+            <h1>Aim Lock Pro</h1>
+            <p>0% Recoil Auto Headshot Setup</p>
         </header>
 
-        <main class="grid-layout">
-            <!-- Card 1 -->
-            <div class="bundle-card" onclick="selectBundle('Neon Phantom', 'Mythic Outfit', 'A radiant glowing cyberpunk suit with custom animation sets.')">
-                <div class="badge rare">Rare</div>
-                <div class="placeholder-img cyan-theme"></div>
-                <h3>Neon Phantom</h3>
+        <div class="form-group">
+            <label for="ram">Device Total RAM</label>
+            <select id="ram">
+                <option value="2">2 GB RAM</option>
+                <option value="3">3 GB RAM</option>
+                <option value="4" selected>4 GB RAM</option>
+                <option value="6">6 GB RAM</option>
+                <option value="8">8 GB RAM</option>
+                <option value="12">12 GB+ RAM</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="dpi">Device DPI Configuration</label>
+            <input type="number" id="dpi" value="360" min="100" max="1440">
+        </div>
+
+        <div class="form-group">
+            <label for="storage">Available Free Storage</label>
+            <select id="storage">
+                <option value="low">Low Space (Less than 10GB Free)</option>
+                <option value="medium" selected>Stable Space (10GB - 40GB Free)</option>
+                <option value="high">Optimal Space (40GB+ Free)</option>
+            </select>
+        </div>
+
+        <button class="btn-generate" onclick="calculateSens()">Generate Calibration</button>
+
+        <div class="results-panel" id="resultsPanel">
+            <div class="results-title">Calculated Sensitivity</div>
+            
+            <div class="badge-container">
+                <span class="badge-aim">All-Range Lock Config</span>
+            </div>
+            
+            <div class="sensitivity-grid">
+                <div class="stat-card">
+                    <div class="stat-label">GENERAL</div>
+                    <div class="stat-value" id="valGeneral">0<span class="stat-max">/200</span></div>
+                </div>
+                
+                <div class="stat-card">
+                    <div class="stat-label">RED DOT</div>
+                    <div class="stat-value" id="valRedDot">0<span class="stat-max">/200</span></div>
+                </div>
+                
+                <div class="stat-card">
+                    <div class="stat-label">2X SCOPE</div>
+                    <div class="stat-value" id="val2x">0<span class="stat-max">/200</span></div>
+                </div>
+                
+                <div class="stat-card">
+                    <div class="stat-label">4X SCOPE</div>
+                    <div class="stat-value" id="val4x">0<span class="stat-max">/200</span></div>
+                </div>
+                
+                <div class="stat-card">
+                    <div class="stat-label">SNIPER SCOPE</div>
+                    <div class="stat-value" id="valSniper">0<span class="stat-max">/200</span></div>
+                </div>
+                
+                <div class="stat-card">
+                    <div class="stat-label">FREE LOOK</div>
+                    <div class="stat-value" id="valFreeLook">0<span class="stat-max">/200</span></div>
+                </div>
+
+                <div class="stat-card fire-size fire-size-container">
+                    <div class="stat-label">Calculated Fire Button Size</div>
+                    <div class="stat-value" id="valFireBtn">0%</div>
+                </div>
             </div>
 
-            <!-- Card 2 -->
-            <div class="bundle-card" onclick="selectBundle('Crimson Rogue', 'Legendary Outfit', 'Classic stealth uniform optimized for high visibility animations.')">
-                <div class="badge legendary">Legendary</div>
-                <div class="placeholder-img red-theme"></div>
-                <h3>Crimson Rogue</h3>
-            </div>
-
-            <!-- Card 3 -->
-            <div class="bundle-card" onclick="selectBundle('Cobalt Jester', 'Epic Outfit', 'Vibrant trickster attire featuring customized particle effects.')">
-                <div class="badge epic">Epic</div>
-                <div class="placeholder-img blue-theme"></div>
-                <h3>Cobalt Jester</h3>
-            </div>
-        </main>
-
-        <!-- Preview Modal Section -->
-        <section id="preview-panel" class="preview-panel hidden">
-            <h2 id="preview-title">Item Name</h2>
-            <span id="preview-rarity" class="item-type">Rarity</span>
-            <p id="preview-desc">Description text goes here.</p>
-            <button onclick="closePreview()">Close Preview</button>
-        </section>
+            <p class="disclaimer">Calibrated perfectly out of 200. Optimized for fluid up-drag gestures at close, medium, and long combat intervals.</p>
+        </div>
     </div>
 
     <script src="script.js"></script>
