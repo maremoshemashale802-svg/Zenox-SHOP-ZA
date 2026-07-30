@@ -1,491 +1,133 @@
-/* Core Layout Settings & Cyberpunk Variables */
-:root {
-    --bg-dark: #000000;
-    --card-bg: rgba(9, 9, 11, 0.93);
-    --neon-red: #ff1a1a;
-    --dim-red: #b30000;
-    --text-primary: #ffffff;
-    --text-secondary: #a1a1aa;
-    --border-color: rgba(239, 68, 68, 0.15);
-}
+/**
+ * Dynamic Sensitivity Interface Engine
+ * Features: Multi-Layer Hardware Telemetry Scan & Input Configuration Persistence
+ */
 
-* {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-    -webkit-tap-highlight-color: transparent;
-}
+document.addEventListener("DOMContentLoaded", () => {
+    
+    // Core Layout Layout Control Nodes
+    const scanTriggerBtn = document.getElementById("scan-trigger-btn");
+    const saveTriggerBtn = document.getElementById("save-trigger-btn");
+    const scanningBox = document.getElementById("scanning-box");
+    const scanProgress = document.getElementById("scan-progress");
+    const scanTitle = document.getElementById("scan-title");
+    const scanSubtitle = document.getElementById("scan-subtitle");
 
-body {
-    background-color: #0d0d0d;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-    color: var(--text-primary);
-    overflow-x: hidden;
-}
+    // Headshot Calibration Matrices mapped up to 200 units
+    const defaultCalibrations = [
+        { id: "slider-general", displayId: "val-general", optimalVal: 184 },
+        { id: "slider-red-dot", displayId: "val-red-dot", optimalVal: 172 },
+        { id: "slider-2x-scope", displayId: "val-2x-scope", optimalVal: 168 },
+        { id: "slider-4x-scope", displayId: "val-4x-scope", optimalVal: 155 },
+        { id: "slider-sniper-scope", displayId: "val-sniper-scope", optimalVal: 110 },
+        { id: "slider-suggested-dpi", displayId: "val-suggested-dpi", optimalVal: 580 },
+        { id: "slider-fire-button", displayId: "val-fire-button", optimalVal: 44 }
+    ];
 
-/* Viewport Frame Box mimicking Android UI environment */
-.app-container {
-    position: relative;
-    width: 100%;
-    max-width: 412px;
-    height: 846px;
-    background-color: var(--bg-dark);
-    border: 4px solid #1a1a1a;
-    border-radius: 36px;
-    overflow: hidden;
-    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.7);
-}
+    // Initialize values as empty placeholders per UI images
+    defaultCalibrations.forEach(target => {
+        const sliderNode = document.getElementById(target.id);
+        const displayNode = document.getElementById(target.displayId);
+        
+        if (sliderNode && displayNode) {
+            displayNode.textContent = "?";
+            
+            // Manual adjustment handler tracking
+            sliderNode.addEventListener("input", (e) => {
+                displayNode.textContent = e.target.value;
+            });
+        }
+    });
 
-/* Background Cyber Matrix Grid System Layout */
-.grid-overlay {
-    position: absolute;
-    inset: 0;
-    pointer-events: none;
-    background-size: 20px 20px;
-    background-image: 
-        linear-gradient(to right, rgba(255, 0, 0, 0.04) 1px, transparent 1px),
-        linear-gradient(to bottom, rgba(255, 0, 0, 0.04) 1px, transparent 1px);
-    z-index: 1;
-}
+    // =========================================================================
+    // AUTOMATED SYSTEM HARDWARE CALIBRATION SCAN LOOP
+    // =========================================================================
+    if (scanTriggerBtn) {
+        scanTriggerBtn.addEventListener("click", () => {
+            // Render modal container visibility attributes
+            scanningBox.style.display = "flex";
+            scanProgress.style.width = "0%";
+            
+            scanTitle.textContent = "INITIALIZING PHONE TELEMETRY...";
+            scanSubtitle.textContent = "Analyzing processor latency parameters...";
 
-.lightning-glow {
-    position: absolute;
-    bottom: 80px;
-    right: 20px;
-    font-size: 5rem;
-    color: var(--neon-red);
-    opacity: 0.12;
-    filter: blur(2px);
-    transform: italic;
-    pointer-events: none;
-    z-index: 1;
-}
+            let progressPct = 0;
+            const scannerTimeline = setInterval(() => {
+                progressPct += 2;
+                scanProgress.style.width = `${progressPct}%`;
 
-.phone-frame {
-    position: relative;
-    width: 100%;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    z-index: 2;
-    padding: 24px 16px 75px 16px;
-}
+                // Update dynamic status logs as progress advances
+                if (progressPct === 26) {
+                    scanTitle.textContent = "SCANNING DPI LAYERS...";
+                    scanSubtitle.textContent = "Evaluating hardware screen refresh metrics...";
+                }
+                if (progressPct === 54) {
+                    scanTitle.textContent = "CALCULATING PRECISION COEFFS...";
+                    scanSubtitle.textContent = "Generating zero-recoil movement offsets (0 - 200)...";
+                }
+                if (progressPct === 82) {
+                    scanTitle.textContent = "INJECTING MODIFICATION PROFILE...";
+                    scanSubtitle.textContent = "Synchronizing crosshair alignment framework...";
+                }
 
-/* Screen Transitions Handling Engine Layout */
-.app-screen {
-    display: none;
-    flex-direction: column;
-    width: 100%;
-    height: 100%;
-    overflow-y: auto;
-}
+                // Scan Completed successfully
+                if (progressPct >= 100) {
+                    clearInterval(scannerTimeline);
+                    
+                    setTimeout(() => {
+                        // Push optimal numerical profiles to UI elements
+                        defaultCalibrations.forEach(target => {
+                            const sliderNode = document.getElementById(target.id);
+                            const displayNode = document.getElementById(target.displayId);
+                            
+                            if (sliderNode && displayNode) {
+                                sliderNode.value = target.optimalVal;
+                                displayNode.textContent = target.optimalVal;
+                            }
+                        });
 
-.app-screen.active {
-    display: flex;
-}
+                        // Flip auxiliary operational settings toggles 
+                        const boostToggle = document.getElementById("toggle-more-sensi");
+                        const limitToggle = document.getElementById("toggle-max-sensi");
+                        if (boostToggle) boostToggle.checked = true;
+                        if (limitToggle) limitToggle.checked = true;
 
-/* Header Component Configuration UI elements */
-.screen-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 12px;
-}
+                        // Activate layout save authorization badges
+                        saveTriggerBtn.classList.add("ready-to-save");
+                        scanningBox.style.display = "none";
+                    }, 350);
+                }
+            }, 40); // Runs a smooth step progression over ~2 seconds
+        });
+    }
 
-.header-tag {
-    display: flex;
-    align-items: center;
-    background-color: rgba(24, 24, 27, 0.6);
-    border: 1px solid rgba(63, 63, 70, 0.4);
-    padding: 6px 12px;
-    border-radius: 6px;
-    font-size: 0.75rem;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-}
+    // =========================================================================
+    // PROFILE SAVE ACTION HANDLER
+    // =========================================================================
+    if (saveTriggerBtn) {
+        saveTriggerBtn.addEventListener("click", () => {
+            if (saveTriggerBtn.classList.contains("ready-to-save")) {
+                alert("Success: Recoil dampening coefficients built and pushed into game configurations storage!");
+            } else {
+                alert("Error: Core telemetry profile empty. Tap 'Auto-tune' to scan device first.");
+            }
+        });
+    }
 
-.header-tag i {
-    color: var(--neon-red);
-    margin-right: 6px;
-}
-
-.margin-bottom {
-    margin-bottom: 14px;
-    align-self: flex-start;
-}
-
-.auto-adjust-btn {
-    background-color: var(--neon-red);
-    color: white;
-    border: none;
-    padding: 6px 12px;
-    border-radius: 6px;
-    font-size: 0.65rem;
-    font-weight: 700;
-    text-transform: uppercase;
-    cursor: pointer;
-}
-
-/* Glassmorphic Container Layout */
-.config-card {
-    background-color: var(--card-bg);
-    border: 2px solid var(--border-color);
-    border-radius: 24px;
-    padding: 16px;
-    display: flex;
-    flex-direction: column;
-    gap: 14px;
-    box-shadow: 0 10px 30px rgba(239, 68, 68, 0.05);
-}
-
-.slider-group {
-    display: flex;
-    flex-direction: column;
-    gap: 4px;
-}
-
-.slider-label-row {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.label-text {
-    font-size: 0.75rem;
-    color: var(--text-secondary);
-    display: flex;
-    align-items: center;
-    gap: 6px;
-}
-
-.value-display {
-    background-color: rgba(239, 68, 68, 0.1);
-    border: 1px solid rgba(239, 68, 68, 0.2);
-    color: var(--neon-red);
-    font-family: monospace;
-    font-size: 0.75rem;
-    font-weight: 700;
-    padding: 2px 8px;
-    border-radius: 4px;
-    min-width: 32px;
-    text-align: center;
-}
-
-/* Custom Styled Range Sliders Component Elements */
-.custom-slider {
-    -webkit-appearance: none;
-    width: 100%;
-    height: 4px;
-    background: #27272a;
-    border-radius: 2px;
-    outline: none;
-}
-
-.custom-slider::-webkit-slider-thumb {
-    -webkit-appearance: none;
-    appearance: none;
-    width: 14px;
-    height: 14px;
-    border-radius: 50%;
-    background: var(--neon-red);
-    cursor: pointer;
-    box-shadow: 0 0 6px var(--neon-red);
-}
-
-.save-config-btn {
-    background-color: var(--neon-red);
-    color: white;
-    border: none;
-    width: 100%;
-    padding: 12px;
-    border-radius: 50px;
-    font-size: 0.85rem;
-    font-weight: 700;
-    margin-top: 18px;
-    cursor: pointer;
-    box-shadow: 0 4px 15px rgba(239, 68, 68, 0.25);
-}
-
-/* SCREEN 2: POWER PLAY SPECIFIC COMPONENTS */
-.power-play-banner {
-    background: linear-gradient(90deg, #b91c1c, #ef4444);
-    border: 1px solid rgba(255,255,255,0.1);
-    border-radius: 16px;
-    padding: 14px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-top: 10px;
-    margin-bottom: 60px;
-}
-
-.banner-left {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-}
-
-.logo-f {
-    background-color: white;
-    color: #ef4444;
-    font-weight: 900;
-    font-size: 1.2rem;
-    width: 32px;
-    height: 32px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border-radius: 8px;
-}
-
-.banner-left h3 {
-    font-size: 0.95rem;
-    font-weight: 900;
-    letter-spacing: 0.02em;
-}
-
-.banner-left p {
-    font-size: 0.7rem;
-    color: rgba(255,255,255,0.8);
-}
-
-.banner-right i {
-    font-size: 1.2rem;
-    background-color: rgba(0,0,0,0.25);
-    padding: 8px;
-    border-radius: 50%;
-}
-
-.booster-circle-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-top: 40px;
-}
-
-.loading-ring {
-    position: relative;
-    width: 220px;
-    height: 220px;
-    border: 4px solid rgba(239, 68, 68, 0.15);
-    border-top: 4px solid var(--neon-red);
-    border-right: 4px solid var(--neon-red);
-    border-radius: 50%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    animation: pulseGlow 2s infinite alternate;
-}
-
-.inner-gamepad {
-    font-size: 3.5rem;
-    color: white;
-}
-
-@keyframes pulseGlow {
-    from { box-shadow: 0 0 10px rgba(239, 68, 68, 0.05); }
-    to { box-shadow: 0 0 30px rgba(239, 68, 68, 0.2); }
-}
-
-/* SCREEN 3: EXTRAS PANEL ELEMENTS */
-.options-box {
-    background-color: var(--card-bg);
-    border: 1px solid var(--border-color);
-    border-radius: 16px;
-    padding: 8px 16px;
-    display: flex;
-    flex-direction: column;
-}
-
-.toggle-row {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 12px 0;
-    border-bottom: 1px solid #18181b;
-}
-
-.toggle-row:last-child { border-bottom: none; }
-
-.toggle-row span {
-    font-size: 0.8rem;
-    color: #e4e4e7;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-}
-
-/* Custom Standard Binary Toggle Switch Controls */
-.switch {
-    position: relative;
-    display: inline-block;
-    width: 38px;
-    height: 22px;
-}
-
-.switch input { opacity: 0; width: 0; height: 0; }
-
-.toggle-slider {
-    position: absolute;
-    cursor: pointer;
-    inset: 0;
-    background-color: #27272a;
-    border-radius: 34px;
-    transition: .2s;
-}
-
-.toggle-slider:before {
-    position: absolute;
-    content: "";
-    height: 16px;
-    width: 16px;
-    left: 3px;
-    bottom: 3px;
-    background-color: #a1a1aa;
-    border-radius: 50%;
-    transition: .2s;
-}
-
-input:checked + .toggle-slider { background-color: var(--neon-red); }
-input:checked + .toggle-slider:before {
-    transform: translateX(16px);
-    background-color: white;
-}
-
-.font-scale-card {
-    background-color: var(--card-bg);
-    border: 1px solid var(--border-color);
-    border-radius: 16px;
-    padding: 16px;
-    margin-top: 16px;
-}
-
-.font-card-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 14px;
-}
-
-.font-title {
-    font-size: 0.8rem;
-    font-weight: 700;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-}
-
-.tt-box {
-    background-color: var(--neon-red);
-    padding: 2px 6px;
-    border-radius: 4px;
-    font-size: 0.7rem;
-}
-
-.confirm-btn {
-    background-color: var(--neon-red);
-    color: white;
-    border: none;
-    padding: 4px 10px;
-    border-radius: 4px;
-    font-size: 0.7rem;
-    font-weight: 700;
-    cursor: pointer;
-}
-
-.font-selector-row {
-    display: flex;
-    gap: 6px;
-    margin-bottom: 12px;
-}
-
-.scale-btn {
-    flex: 1;
-    background-color: rgba(24, 24, 27, 0.6);
-    border: 1px solid #27272a;
-    color: #3f3f46;
-    padding: 10px 0;
-    border-radius: 8px;
-    font-weight: 700;
-    font-size: 0.8rem;
-    cursor: pointer;
-}
-
-.scale-btn.active {
-    background-color: var(--neon-red);
-    border-color: var(--neon-red);
-    color: white;
-}
-
-.font-value-preview {
-    background-color: rgba(24, 24, 27, 0.4);
-    border: 1px solid #18181b;
-    padding: 10px;
-    text-align: center;
-    border-radius: 8px;
-    font-family: monospace;
-    font-size: 0.8rem;
-    font-weight: 700;
-}
-
-/* SCREEN 4: SYSTEM STATS VISUALS */
-.stats-box {
-    background-color: var(--card-bg);
-    border: 1px solid var(--border-color);
-    border-radius: 16px;
-    padding: 16px;
-}
-
-.progress-columns {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 16px;
-}
-
-.prog-col { width: 48%; }
-
-.stat-label {
-    font-size: 0.7rem;
-    color: var(--text-secondary);
-    display: block;
-    margin-bottom: 6px;
-}
-
-.progress-bar-wrap {
-    width: 100%;
-    height: 28px;
-    background-color: #111;
-    border: 1px solid #222;
-    border-radius: 6px;
-    overflow: hidden;
-    position: relative;
-}
-
-.progress-bar-fill {
-    height: 100%;
-    background-color: var(--neon-red);
-    display: flex;
-    align-items: center;
-    padding-left: 10px;
-    font-size: 0.75rem;
-    font-weight: 700;
-}
-
-.sub-labels {
-    display: flex;
-    justify-content: space-between;
-    margin-top: 6px;
-    font-size: 0.6rem;
-    font-weight: 700;
-}
-
-.red-dot { color: var(--neon-red); }
-.gray-dot { color: #52525b; }
-
-.metric-row {
-    display: flex;
+    // =========================================================================
+    // FONTS GRID ATTRIBUTES MATRIX INTERACTION
+    // =========================================================================
+    const scaleButtons = document.querySelectorAll(".scale-btn");
+    const previewBox = document.getElementById("font-preview-box");
+    
+    scaleButtons.forEach(btn => {
+        btn.addEventListener("click", () => {
+            scaleButtons.forEach(b => b.classList.remove("active"));
+            btn.classList.add("active");
+            
+            if (previewBox) {
+                previewBox.textContent = btn.getAttribute("data-val");
+            }
+        });
+    });
+});
