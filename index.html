@@ -3,182 +3,120 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sensitivity Tool - Zero Recoil Edition</title>
-    <link rel="stylesheet" href="style.css">
-    <!-- Font Awesome Icons -->
-    <link rel="stylesheet" href="https://cloudflare.com">
+    <title>Zenox-SHOP-ZA</title>
+
+    <link rel="stylesheet" href="../public/css/style.css">
 </head>
+
 <body>
-    <div class="app-container">
-        
-        <!-- Background Grid Pattern -->
-        <div class="grid-overlay"></div>
-        <div class="lightning-glow">⚡</div>
 
-        <!-- MOBILE INTERFACE FRAME Wrapper -->
-        <div class="phone-frame">
-            
-            <!-- CONTROLLER PANEL VIEW CONTAINER -->
-            <div id="screen-sensitivity" class="app-screen active">
-                <div class="screen-header">
-                    <div class="header-tag">
-                        <i class="fa-solid fa-sliders"></i>
-                        <span>Sensitivity Generator</span>
-                    </div>
-                    <button class="auto-adjust-btn" id="scan-trigger-btn">
-                        <i class="fa-solid fa-wand-magic-sparkles"></i> Auto-tune
-                    </button>
-                </div>
+<header>
 
-                <!-- Phone Hardware Scanning Overlay Element UI -->
-                <div class="scanning-modal-overlay" id="scanning-box">
-                    <div class="scanner-card">
-                        <i class="fa-solid fa-arrows-to-eye scanning-pulse-icon"></i>
-                        <h4 id="scan-title">SCANNING DEVICE HARDWARE...</h4>
-                        <p id="scan-subtitle">Reading processor clock and DPI layers</p>
-                        <div class="hardware-load-bar">
-                            <div class="hardware-load-fill" id="scan-progress"></div>
-                        </div>
-                    </div>
-                </div>
+    <div class="logo">
+        <h2>ZENOX-SHOP-ZA</h2>
+    </div>
 
-                <!-- Main Configuration Panel Matrix -->
-                <div class="config-card">
-                    <!-- General Slider Item -->
-                    <div class="slider-group">
-                        <div class="slider-label-row">
-                            <span class="label-text"><i class="fa-solid fa-crosshair"></i> General</span>
-                            <span class="value-display" id="val-general">?</span>
-                        </div>
-                        <input type="range" class="custom-slider" id="slider-general" min="0" max="200" value="100">
-                    </div>
+    <nav>
 
-                    <!-- Red Dot Slider Item -->
-                    <div class="slider-group">
-                        <div class="slider-label-row">
-                            <span class="label-text"><i class="fa-solid fa-crosshair"></i> Red Dot</span>
-                            <span class="value-display" id="val-red-dot">?</span>
-                        </div>
-                        <input type="range" class="custom-slider" id="slider-red-dot" min="0" max="200" value="100">
-                    </div>
+        <a href="#">Home</a>
+        <a href="#">Shop</a>
+        <a href="#">Login</a>
+        <a href="#">Register</a>
 
-                    <!-- 2x Scope Slider Item -->
-                    <div class="slider-group">
-                        <div class="slider-label-row">
-                            <span class="label-text"><i class="fa-regular fa-circle-dot"></i> 2x Scope</span>
-                            <span class="value-display" id="val-2x-scope">?</span>
-                        </div>
-                        <input type="range" class="custom-slider" id="slider-2x-scope" min="0" max="200" value="100">
-                    </div>
+        <div class="cart">
+            🛒 <span id="cart-count">0</span>
+        </div>
 
-                    <!-- 4x Scope Slider Item -->
-                    <div class="slider-group">
-                        <div class="slider-label-row">
-                            <span class="label-text"><i class="fa-solid fa-expand"></i> 4x Scope</span>
-                            <span class="value-display" id="val-4x-scope">?</span>
-                        </div>
-                        <input type="range" class="custom-slider" id="slider-4x-scope" min="0" max="200" value="100">
-                    </div>
+    </nav>
 
-                    <!-- Sniper Scope Slider Item -->
-                    <div class="slider-group">
-                        <div class="slider-label-row">
-                            <span class="label-text"><i class="fa-solid fa-crosshair"></i> Sniper Scope</span>
-                            <span class="value-display" id="val-sniper-scope">?</span>
-                        </div>
-                        <input type="range" class="custom-slider" id="slider-sniper-scope" min="0" max="200" value="100">
-                    </div>
+</header>
 
-                    <!-- Suggested DPI Slider Item -->
-                    <div class="slider-group">
-                        <div class="slider-label-row">
-                            <span class="label-text"><i class="fa-solid fa-mobile-screen-button"></i> Suggested DPI</span>
-                            <span class="value-display" id="val-suggested-dpi">?</span>
-                        </div>
-                        <input type="range" class="custom-slider" id="slider-suggested-dpi" min="0" max="1000" value="500">
-                    </div>
+<section class="hero">
 
-                    <!-- Fire Button Scale Slider Item -->
-                    <div class="slider-group">
-                        <div class="slider-label-row">
-                            <span class="label-text"><i class="fa-solid fa-fire"></i> Fire Button Scale</span>
-                            <span class="value-display" id="val-fire-button">?</span>
-                        </div>
-                        <input type="range" class="custom-slider" id="slider-fire-button" min="0" max="100" value="50">
-                    </div>
-                </div>
+<h1>JUST FOR YOU</h1>
 
-                <button class="save-config-btn" id="save-trigger-btn">
-                    <i class="fa-solid fa-floppy-disk"></i> Save Config
-                </button>
+<p>For the love of the game.</p>
 
-                <!-- System Extra Structural Items Layout -->
-                <div class="header-tag margin-bottom space-top">
-                    <i class="fa-solid fa-wrench"></i> <span>Extra Options</span>
-                </div>
+</section>
 
-                <div class="options-box">
-                    <div class="toggle-row">
-                        <span><i class="fa-solid fa-plus"></i> More Sensitivity</span>
-                        <label class="switch"><input type="checkbox" id="toggle-more-sensi"><span class="toggle-slider"></span></label>
-                    </div>
-                    <div class="toggle-row">
-                        <span><i class="fa-solid fa-rocket"></i> Maximum Sensitivity</span>
-                        <label class="switch"><input type="checkbox" id="toggle-max-sensi"><span class="toggle-slider"></span></label>
-                    </div>
-                    <div class="toggle-row">
-                        <span><i class="fa-solid fa-border-all"></i> FPS on Screen</span>
-                        <label class="switch"><input type="checkbox"><span class="toggle-slider"></span></label>
-                    </div>
-                    <div class="toggle-row">
-                        <span><i class="fa-solid fa-crosshair"></i> Clear Screen</span>
-                        <label class="switch"><input type="checkbox"><span class="toggle-slider"></span></label>
-                    </div>
-                    <div class="toggle-row">
-                        <span><i class="fa-solid fa-hand-pointer"></i> Smooth Touch</span>
-                        <label class="switch"><input type="checkbox"><span class="toggle-slider"></span></label>
-                    </div>
-                </div>
+<section class="search">
 
-                <!-- Font Scaler Matrix Block Layout -->
-                <div class="font-scale-card">
-                    <div class="font-card-header">
-                        <div class="font-title"><span class="tt-box">Tt</span> Font Scale</div>
-                        <button class="confirm-btn"><i class="fa-solid fa-check"></i> Confirm</button>
-                    </div>
-                    <div class="font-selector-row">
-                        <button class="scale-btn active" data-val="0,1">0,1</button>
-                        <button class="scale-btn" data-val="0,5">0,5</button>
-                        <button class="scale-btn" data-val="1.0">1.0</button>
-                        <button class="scale-btn" data-val="1.5">1.5</button>
-                    </div>
-                    <div class="font-value-preview" id="font-preview-box">0,1</div>
-                </div>
+<input
+type="text"
+placeholder="Search Diamonds, Prime Gifts, Memberships..."
+>
 
-                <!-- System Stats Diagnostics Panel Element Layout -->
-                <div class="header-tag margin-bottom space-top">
-                    <i class="fa-solid fa-chart-bar"></i> <span>System Stats</span>
-                </div>
+<button>Search</button>
 
-                <div class="stats-box">
-                    <div class="progress-columns">
-                        <div class="prog-col">
-                            <span class="stat-label">Memory Load</span>
-                            <div class="progress-bar-wrap">
-                                <div class="progress-bar-fill" style="width: 79%;">79%</div>
-                            </div>
-                            <div class="sub-labels">
-                                <span class="red-dot">🔴 2.7 GB</span>
-                                <span class="gray-dot">⚫ 2.1 GB</span>
-                            </div>
-                        </div>
-                        <div class="prog-col">
-                            <span class="stat-label">Disk Space</span>
-                            <div class="progress-bar-wrap">
-                                <div class="progress-bar-fill" style="width: 98%;">98%</div>
-                            </div>
-                            <div class="sub-labels">
-                                <span class="red-dot">🔴 21.7 GB</span>
-                                <span class="gray-dot">⚫ 19.7 GB</span>
-                            </div>
-                        </div>
+</section>
+
+<section class="products">
+
+<h2>Featured Products</h2>
+
+<div class="product">
+
+<h3>🔹 DIAMONDS TOP UP</h3>
+
+<p>300 Diamonds - R10</p>
+
+<p>500 Diamonds - R25</p>
+
+<p>1100 Diamonds - R70</p>
+
+<p>2250 Diamonds - R160</p>
+
+<button>Add to Cart</button>
+
+</div>
+
+<div class="product">
+
+<h3>🎁 PRIME STORE GIFTS</h3>
+
+<p>COBRA EVO MP40 - R100</p>
+
+<button>Add to Cart</button>
+
+</div>
+
+<div class="product">
+
+<h3>🟥 MEMBERSHIP</h3>
+
+<p>Weekly Membership - R55</p>
+
+<button>Add to Cart</button>
+
+</div>
+
+<div class="product">
+
+<h3>✨ PRIME POINTS</h3>
+
+<p>10 000 - R50</p>
+
+<p>30 000 - R100</p>
+
+<p>60 000 - R130</p>
+
+<p>120 000 - R200</p>
+
+<p>200 000 - R250</p>
+
+<button>Add to Cart</button>
+
+</div>
+
+</section>
+
+<footer>
+
+<p>© 2026 Zenox-SHOP-ZA</p>
+
+</footer>
+
+<script src="../public/js/script.js"></script>
+
+</body>
+</html>
