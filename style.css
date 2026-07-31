@@ -1,133 +1,139 @@
-/**
- * Dynamic Sensitivity Interface Engine
- * Features: Multi-Layer Hardware Telemetry Scan & Input Configuration Persistence
- */
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial,sans-serif;
+}
 
-document.addEventListener("DOMContentLoaded", () => {
-    
-    // Core Layout Layout Control Nodes
-    const scanTriggerBtn = document.getElementById("scan-trigger-btn");
-    const saveTriggerBtn = document.getElementById("save-trigger-btn");
-    const scanningBox = document.getElementById("scanning-box");
-    const scanProgress = document.getElementById("scan-progress");
-    const scanTitle = document.getElementById("scan-title");
-    const scanSubtitle = document.getElementById("scan-subtitle");
+body{
+    background:#f5f9ff;
+    color:#111;
+}
 
-    // Headshot Calibration Matrices mapped up to 200 units
-    const defaultCalibrations = [
-        { id: "slider-general", displayId: "val-general", optimalVal: 184 },
-        { id: "slider-red-dot", displayId: "val-red-dot", optimalVal: 172 },
-        { id: "slider-2x-scope", displayId: "val-2x-scope", optimalVal: 168 },
-        { id: "slider-4x-scope", displayId: "val-4x-scope", optimalVal: 155 },
-        { id: "slider-sniper-scope", displayId: "val-sniper-scope", optimalVal: 110 },
-        { id: "slider-suggested-dpi", displayId: "val-suggested-dpi", optimalVal: 580 },
-        { id: "slider-fire-button", displayId: "val-fire-button", optimalVal: 44 }
-    ];
+header{
+    background:#0066ff;
+    color:white;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:20px;
+}
 
-    // Initialize values as empty placeholders per UI images
-    defaultCalibrations.forEach(target => {
-        const sliderNode = document.getElementById(target.id);
-        const displayNode = document.getElementById(target.displayId);
-        
-        if (sliderNode && displayNode) {
-            displayNode.textContent = "?";
-            
-            // Manual adjustment handler tracking
-            sliderNode.addEventListener("input", (e) => {
-                displayNode.textContent = e.target.value;
-            });
-        }
-    });
+.logo h2{
+    font-size:28px;
+}
 
-    // =========================================================================
-    // AUTOMATED SYSTEM HARDWARE CALIBRATION SCAN LOOP
-    // =========================================================================
-    if (scanTriggerBtn) {
-        scanTriggerBtn.addEventListener("click", () => {
-            // Render modal container visibility attributes
-            scanningBox.style.display = "flex";
-            scanProgress.style.width = "0%";
-            
-            scanTitle.textContent = "INITIALIZING PHONE TELEMETRY...";
-            scanSubtitle.textContent = "Analyzing processor latency parameters...";
+nav{
+    display:flex;
+    align-items:center;
+    gap:20px;
+}
 
-            let progressPct = 0;
-            const scannerTimeline = setInterval(() => {
-                progressPct += 2;
-                scanProgress.style.width = `${progressPct}%`;
+nav a{
+    color:white;
+    text-decoration:none;
+    font-weight:bold;
+}
 
-                // Update dynamic status logs as progress advances
-                if (progressPct === 26) {
-                    scanTitle.textContent = "SCANNING DPI LAYERS...";
-                    scanSubtitle.textContent = "Evaluating hardware screen refresh metrics...";
-                }
-                if (progressPct === 54) {
-                    scanTitle.textContent = "CALCULATING PRECISION COEFFS...";
-                    scanSubtitle.textContent = "Generating zero-recoil movement offsets (0 - 200)...";
-                }
-                if (progressPct === 82) {
-                    scanTitle.textContent = "INJECTING MODIFICATION PROFILE...";
-                    scanSubtitle.textContent = "Synchronizing crosshair alignment framework...";
-                }
+nav a:hover{
+    color:#ffe600;
+}
 
-                // Scan Completed successfully
-                if (progressPct >= 100) {
-                    clearInterval(scannerTimeline);
-                    
-                    setTimeout(() => {
-                        // Push optimal numerical profiles to UI elements
-                        defaultCalibrations.forEach(target => {
-                            const sliderNode = document.getElementById(target.id);
-                            const displayNode = document.getElementById(target.displayId);
-                            
-                            if (sliderNode && displayNode) {
-                                sliderNode.value = target.optimalVal;
-                                displayNode.textContent = target.optimalVal;
-                            }
-                        });
+.cart{
+    background:white;
+    color:#0066ff;
+    padding:8px 15px;
+    border-radius:25px;
+    cursor:pointer;
+    font-weight:bold;
+}
 
-                        // Flip auxiliary operational settings toggles 
-                        const boostToggle = document.getElementById("toggle-more-sensi");
-                        const limitToggle = document.getElementById("toggle-max-sensi");
-                        if (boostToggle) boostToggle.checked = true;
-                        if (limitToggle) limitToggle.checked = true;
+.hero{
+    text-align:center;
+    padding:80px 20px;
+}
 
-                        // Activate layout save authorization badges
-                        saveTriggerBtn.classList.add("ready-to-save");
-                        scanningBox.style.display = "none";
-                    }, 350);
-                }
-            }, 40); // Runs a smooth step progression over ~2 seconds
-        });
-    }
+.hero h1{
+    font-size:70px;
+    color:#0066ff;
+    text-shadow:0 0 20px #4da6ff;
+}
 
-    // =========================================================================
-    // PROFILE SAVE ACTION HANDLER
-    // =========================================================================
-    if (saveTriggerBtn) {
-        saveTriggerBtn.addEventListener("click", () => {
-            if (saveTriggerBtn.classList.contains("ready-to-save")) {
-                alert("Success: Recoil dampening coefficients built and pushed into game configurations storage!");
-            } else {
-                alert("Error: Core telemetry profile empty. Tap 'Auto-tune' to scan device first.");
-            }
-        });
-    }
+.hero p{
+    font-size:24px;
+    margin-top:20px;
+}
 
-    // =========================================================================
-    // FONTS GRID ATTRIBUTES MATRIX INTERACTION
-    // =========================================================================
-    const scaleButtons = document.querySelectorAll(".scale-btn");
-    const previewBox = document.getElementById("font-preview-box");
-    
-    scaleButtons.forEach(btn => {
-        btn.addEventListener("click", () => {
-            scaleButtons.forEach(b => b.classList.remove("active"));
-            btn.classList.add("active");
-            
-            if (previewBox) {
-                previewBox.textContent = btn.getAttribute("data-val");
-            }
-        });
-    });
-});
+.search{
+    display:flex;
+    justify-content:center;
+    margin:40px;
+}
+
+.search input{
+    width:400px;
+    padding:15px;
+    border:2px solid #0066ff;
+    border-radius:10px 0 0 10px;
+    outline:none;
+}
+
+.search button{
+    background:#0066ff;
+    color:white;
+    border:none;
+    padding:15px 25px;
+    cursor:pointer;
+    border-radius:0 10px 10px 0;
+}
+
+.products{
+    padding:40px;
+}
+
+.products h2{
+    text-align:center;
+    color:#0066ff;
+    margin-bottom:30px;
+}
+
+.product{
+    background:white;
+    border-radius:15px;
+    padding:20px;
+    margin:20px;
+    box-shadow:0 5px 15px rgba(0,0,0,.1);
+}
+
+.product h3{
+    color:#0066ff;
+    margin-bottom:15px;
+}
+
+.product p{
+    margin:8px 0;
+}
+
+.product button{
+    width:100%;
+    background:#0066ff;
+    color:white;
+    border:none;
+    padding:12px;
+    margin-top:15px;
+    border-radius:10px;
+    cursor:pointer;
+    font-size:16px;
+}
+
+.product button:hover{
+    background:#0047b3;
+}
+
+footer{
+    background:#0066ff;
+    color:white;
+    text-align:center;
+    padding:20px;
+    margin-top:40px;
+}
