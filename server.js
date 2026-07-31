@@ -1,13 +1,13 @@
 const express = require("express");
 const path = require("path");
-
+const authRoutes = require("./routes/authRoutes");
 const app = express();
 const PORT = 3000;
 
 // Middleware
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
-
+app.use("/auth", authRoutes);
 // Serve static files
 app.use("/public", express.static(path.join(__dirname, "public")));
 
