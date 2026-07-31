@@ -1,6 +1,8 @@
 const express = require("express");
 const path = require("path");
 const authRoutes = require("./routes/authRoutes");
+const db = require("./config/db");
+
 const app = express();
 const PORT = 3000;
 
