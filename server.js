@@ -12,6 +12,7 @@ const PORT = 3000;
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use("/auth", authRoutes);
+app.use("/products", productRoutes);
 // Serve static files
 app.use("/public", express.static(path.join(__dirname, "public")));
 
