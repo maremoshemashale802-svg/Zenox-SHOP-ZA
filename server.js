@@ -11,8 +11,10 @@ const PORT = 3000;
 // Middleware
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
+
 app.use("/auth", authRoutes);
 app.use("/products", productRoutes);
+
 // Serve static files
 app.use("/public", express.static(path.join(__dirname, "public")));
 
@@ -24,11 +26,6 @@ app.get("/", (req, res) => {
 // Cart page
 app.get("/cart", (req, res) => {
     res.sendFile(path.join(__dirname, "view", "cart.html"));
-});
-
-// Checkout page
-app.get("/checkout", (req, res) => {
-    res.sendFile(path.join(__dirname, "view", "checkout.html"));
 });
 
 // Login page
